@@ -70,27 +70,12 @@ yarn ios
 yarn android
 ```
 
-### Local integration of WebRTC.xcframework
-
-WebRTC.xcframework is supplied as a local cocoapod dependency. See podspec definition in ../iOS/WebRTC/WebRTC.podspec
-
-The podspec references a file in the path `ios/WebRTC.xcframework.zip` as a source to the framework.
-
-In the podfile:
-
-```
-pod 'WebRTC', :podspec => 'WebRTC/'
-
-```
-
-Note: The local consumption of xcframework as a zip file in the project is for temporary testing and will be replaced with a private cocoapod in the future.
-
 ### This project uses react-native-webrtc with fixes:
 
 This project uses a custom version of react-native-webrtc from the repository -> https://github.com/millicast/react-native-webrtc.
 For consuming this fixes in another react native project, the following changes should be done:
 
-Checkout `package.json` file:
+Please refer to `package.json` file:
 
 ```
 "react-native-webrtc": "github:millicast/react-native-webrtc#{commit-hash}"
