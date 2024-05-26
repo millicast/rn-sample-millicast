@@ -939,7 +939,7 @@ PODS:
     - React
   - react-native-webrtc (118.0.7):
     - React-Core
-    - RNMillicastWebRTC (~> 118.0.0)
+    - RNMillicastWebRTC (= 118.0.0-4d27b948)
   - React-nativeconfig (0.74.0)
   - React-NativeModulesApple (0.74.0):
     - glog
@@ -1168,7 +1168,7 @@ PODS:
     - React-logger (= 0.74.0)
     - React-perflogger (= 0.74.0)
     - React-utils (= 0.74.0)
-  - RNMillicastWebRTC (118.0.0)
+  - RNMillicastWebRTC (118.0.0-4d27b948)
   - SocketRocket (0.7.0)
   - Yoga (0.0.0)
 
@@ -1385,7 +1385,7 @@ SPEC CHECKSUMS:
   React-logger: 03f2f7b955cfe24593a2b8c9705c23e142d1ad24
   React-Mapbuffer: 5e05d78fe6505f4a054b86f415733d4ad02dd314
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
-  react-native-webrtc: 964a588b141d094ca7b5d52427678318b4f82b2c
+  react-native-webrtc: 3dcfdb16619a2a1f49524ab823af1b6bcbe17220
   React-nativeconfig: 951ec32f632e81cbd7d40aebb3211313251c092e
   React-NativeModulesApple: 0b3a42ca90069119ef79d8b2327d01441d71abd4
   React-perflogger: 271f1111779fef70f9502d1d38da5132e5585230
@@ -1409,10 +1409,10 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 7fe561d179b97cecd0c2bec0bbd08f9fd8581c26
   React-utils: f013537c3371270d2095bff1d594d00d4bc9261b
   ReactCommon: 2cde697fd80bd31da1d6448d25a5803088585219
-  RNMillicastWebRTC: e5148b6f9c053b1ec86a838d80fbfaadbcadca5a
+  RNMillicastWebRTC: 8d81210881fd9888788d505be0b3f470a5faf8d7
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 56f906bf6c11c931588191dde1229fd3e4e3d557
 
-PODFILE CHECKSUM: 75059b87831b29170900729cd91211edfb630776
+PODFILE CHECKSUM: eca5631096121ed74c7fdca1646a4eda9b3d6258
 
 COCOAPODS: 1.14.3

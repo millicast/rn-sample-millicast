@@ -5713,9 +5713,9 @@ react-native-keep-awake@^4.0.0:
   resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-4.0.0.tgz#d89fdc3fb60b3cffa979ef37dc5816196df998a2"
   integrity sha512-0Fotox+eLXQooeibVs3P60yASYUWjtRw9MZNmbuHt5UZQrgUrAKsE4jm7gTr4tPU1m1RkwGzcgUFpcOkh/ec7g==
 
-"react-native-webrtc@github:millicast/react-native-webrtc#ceb22ce":
+"react-native-webrtc@github:millicast/react-native-webrtc#2434f4b":
   version "118.0.7"
-  resolved "https://codeload.github.com/millicast/react-native-webrtc/tar.gz/ceb22ce2d92e59dee11992b97612d15128dfd364"
+  resolved "https://codeload.github.com/millicast/react-native-webrtc/tar.gz/2434f4bfff2fa09df4e54e13560a1e6d2ab3bc34"
   dependencies:
     base64-js "1.5.1"
     debug "4.3.4"

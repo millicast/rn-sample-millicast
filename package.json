@@ -14,7 +14,7 @@
     "react": "18.2.0",
     "react-native": "0.74.0",
     "react-native-keep-awake": "^4.0.0",
-    "react-native-webrtc": "github:millicast/react-native-webrtc#ceb22ce"
+    "react-native-webrtc": "github:millicast/react-native-webrtc#2434f4b"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
