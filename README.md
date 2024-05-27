@@ -4,7 +4,7 @@ A react native millicast sample application for integration and test of custom l
 
 ## Requirements and supported platforms
 
-The application is meant to run on mobile Android and iOS
+The application is meant to run on Android mobiles, Android TV's and iOS devices
 
 ### Environment Set Up
 
@@ -60,6 +60,8 @@ bundle exec pod install
 
 yarn ios
 ```
+
+Note: `YOUR_PERSONAL_ACCESS_TOKEN` gives you access to the private release artifacts in [this](https://github.com/millicast/libwebrtc-react-native/releases) repository
 
 (alternatively)
 
