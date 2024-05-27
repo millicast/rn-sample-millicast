@@ -27,9 +27,13 @@ gem install bundler
 - Xcode 15.2
 - Cocoapods installed (Tested on versions > 1.14.3)
 
+## Update Stream Name and Account Id to view
+
+Update the `STREAM_NAME` and `ACCOUNT_ID` variable in the `.env` file with your choice of Dolby.io Stream Name and Account ID to view
+
 ## How to build and run the Sample App
 
-The following steps are common for all Apple devices.
+The steps 1 and 2 are common for all devices.
 
 1. Install the dependencies:
 

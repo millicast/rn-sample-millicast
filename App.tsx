@@ -5,12 +5,11 @@ import KeepAwake from 'react-native-keep-awake';
 import {View, Text} from 'react-native';
 
 const App = () => {
-  const streamName = 'multiview';
-  const streamAccountId = 'k9Mwad';
-
   const [stats, setStats] = useState<string>();
   const [streamURL, setStreamURL] = useState<string>();
   const millicastViewRef = useRef<MillicastView>();
+  const streamName = `${process.env.STREAM_NAME}`;
+  const streamAccountId = `${process.env.ACCOUNT_ID}`;
 
   function changeKeepAwake(shouldBeAwake) {
     if (shouldBeAwake) {
