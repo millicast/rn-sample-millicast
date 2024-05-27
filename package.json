@@ -12,9 +12,10 @@
   "dependencies": {
     "@millicast/sdk": "^0.1.44",
     "react": "18.2.0",
-    "react-native": "0.74.0",
+    "react-native": "npm:react-native-tvos@^0.74.1-0",
     "react-native-keep-awake": "^4.0.0",
-    "react-native-webrtc": "github:millicast/react-native-webrtc#2434f4b"
+    "react-native-webrtc": "github:millicast/react-native-webrtc#2434f4b",
+    "text-encoding-polyfill": "^0.6.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
