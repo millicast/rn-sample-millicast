@@ -2,14 +2,14 @@ import {Director, View as MillicastView} from '@millicast/sdk';
 import {useEffect, useState, useRef} from 'react';
 import {RTCView} from 'react-native-webrtc';
 import KeepAwake from 'react-native-keep-awake';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 
 const App = () => {
-  const streamName = 'multiview';
-  const streamAccountId = 'k9Mwad';
-
+  const [stats, setStats] = useState<string>();
   const [streamURL, setStreamURL] = useState<string>();
   const millicastViewRef = useRef<MillicastView>();
+  const streamName = `${process.env.STREAM_NAME}`;
+  const streamAccountId = `${process.env.ACCOUNT_ID}`;
 
   function changeKeepAwake(shouldBeAwake) {
     if (shouldBeAwake) {
@@ -41,6 +41,15 @@ const App = () => {
 
       try {
         await millicastView.connect();
+
+        millicastView.webRTCPeer?.initStats();
+
+        // Capture new stats from event every second
+        millicastView.webRTCPeer?.on('stats', statistics => {
+          const statisticsString = JSON.stringify(statistics, null, '  ');
+          console.log(statisticsString);
+          setStats(statisticsString);
+        });
       } catch (e) {
         console.log('Connection failed. Reason:', e);
       }
@@ -61,8 +70,21 @@ const App = () => {
   }, []);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: 'grey'}}>
       <RTCView streamURL={streamURL} style={{flex: 1, zIndex: 1}} />
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 10,
+          right: 10,
+          width: 200,
+          height: 350,
+          backgroundColor: 'black',
+          zIndex: 1000,
+          opacity: 0.9,
+        }}>
+        <Text style={{color: 'white', fontSize: 6}}>{stats}</Text>
+      </View>
     </View>
   );
 };
