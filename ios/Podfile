@@ -25,6 +25,8 @@ target 'RNSampleMillicast' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'ReactNativeIncallManager', :path => '../node_modules/react-native-incall-manager'
+
   target 'RNSampleMillicastTests' do
     inherit! :complete
     # Pods for testing

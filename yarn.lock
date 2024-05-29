@@ -5811,10 +5811,10 @@ react-native-dotenv@^3.4.11:
   dependencies:
     dotenv "^16.4.5"
 
-react-native-keep-awake@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-4.0.0.tgz#d89fdc3fb60b3cffa979ef37dc5816196df998a2"
-  integrity sha512-0Fotox+eLXQooeibVs3P60yASYUWjtRw9MZNmbuHt5UZQrgUrAKsE4jm7gTr4tPU1m1RkwGzcgUFpcOkh/ec7g==
+react-native-incall-manager@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-incall-manager/-/react-native-incall-manager-4.2.0.tgz#1cc781591007c4c9fc21deea82a308d46dc4db6c"
+  integrity sha512-DC5XRQVAwNgNA6YZ3ILF6ttWXv/MUQ4omzmVDh/uHc0TW0v4f8QIdt6D9GHZhGKb3+qB7XKUxpXVBrLH+9zqfQ==
 
 "react-native-webrtc@github:millicast/react-native-webrtc#2434f4b":
   version "118.0.7"

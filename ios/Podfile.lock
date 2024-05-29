@@ -917,8 +917,6 @@ PODS:
   - React-Mapbuffer (0.74.1-0):
     - glog
     - React-debug
-  - react-native-keep-awake (4.0.0):
-    - React
   - react-native-webrtc (118.0.7):
     - React-Core
     - RNMillicastWebRTC (= 118.0.0-4d27b948)
@@ -1144,6 +1142,8 @@ PODS:
     - React-logger (= 0.74.1-0)
     - React-perflogger (= 0.74.1-0)
     - React-utils (= 0.74.1-0)
+  - ReactNativeIncallManager (4.2.0):
+    - React-Core
   - RNMillicastWebRTC (118.0.0-4d27b948)
   - SocketRocket (0.7.0)
   - Yoga (0.0.0)
@@ -1181,7 +1181,6 @@ DEPENDENCIES:
   - React-jsitracing (from `../node_modules/react-native/ReactCommon/hermes/executor/`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
-  - react-native-keep-awake (from `../node_modules/react-native-keep-awake`)
   - react-native-webrtc (from `../node_modules/react-native-webrtc`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -1205,6 +1204,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - ReactNativeIncallManager (from `../node_modules/react-native-incall-manager`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1275,8 +1275,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   React-Mapbuffer:
     :path: "../node_modules/react-native/ReactCommon"
-  react-native-keep-awake:
-    :path: "../node_modules/react-native-keep-awake"
   react-native-webrtc:
     :path: "../node_modules/react-native-webrtc"
   React-nativeconfig:
@@ -1323,6 +1321,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeIncallManager:
+    :path: "../node_modules/react-native-incall-manager"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -1357,7 +1357,6 @@ SPEC CHECKSUMS:
   React-jsitracing: 82c700d394f5d553e43699a165b9585046e8e041
   React-logger: c89175f47ac5dee3b345dd931b812e633783d3fa
   React-Mapbuffer: e1da272870606f17a64520bf78d85e1b73bb0778
-  react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
   react-native-webrtc: 3dcfdb16619a2a1f49524ab823af1b6bcbe17220
   React-nativeconfig: 0e309fafbbfbb8eac2f1999d0756732624ac5b39
   React-NativeModulesApple: a53141b07c57c53cdc1f2043e5acf3b9318bc340
@@ -1381,10 +1380,11 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 4780cdba710de22aae5ea6769266cec9a89b2bba
   React-utils: 45e9ba5a0ec387d31de5d24043bdcf7915b9658b
   ReactCommon: 678c6fdb479e7533859f29000d899af37d3a6c7a
+  ReactNativeIncallManager: bfc9c67358cd524882a7c4116dcb311ac2293d4b
   RNMillicastWebRTC: 8d81210881fd9888788d505be0b3f470a5faf8d7
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: d84d1e521e3f8fa3cdd139d617ddf6514d061c78
 
-PODFILE CHECKSUM: eca5631096121ed74c7fdca1646a4eda9b3d6258
+PODFILE CHECKSUM: 4fae1b592790d2a915027a3d85b38742c43dac83
 
 COCOAPODS: 1.14.3

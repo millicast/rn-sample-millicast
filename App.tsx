@@ -1,8 +1,8 @@
 import {Director, View as MillicastView} from '@millicast/sdk';
 import {useEffect, useState, useRef} from 'react';
 import {RTCView} from 'react-native-webrtc';
-import KeepAwake from 'react-native-keep-awake';
 import {View, Text} from 'react-native';
+import InCallManager from 'react-native-incall-manager';
 
 const App = () => {
   const [stats, setStats] = useState<string>();
@@ -10,14 +10,6 @@ const App = () => {
   const millicastViewRef = useRef<MillicastView>();
   const streamName = `${process.env.STREAM_NAME}`;
   const streamAccountId = `${process.env.ACCOUNT_ID}`;
-
-  function changeKeepAwake(shouldBeAwake) {
-    if (shouldBeAwake) {
-      KeepAwake.activate();
-    } else {
-      KeepAwake.deactivate();
-    }
-  }
 
   useEffect(() => {
     const subscribe = async () => {
@@ -40,6 +32,7 @@ const App = () => {
       });
 
       try {
+        InCallManager.start({media: 'video'});
         await millicastView.connect();
 
         millicastView.webRTCPeer?.initStats();
@@ -55,12 +48,11 @@ const App = () => {
       }
     };
     subscribe();
-    changeKeepAwake(true);
     const unsubscribe = async () => {
       if (millicastViewRef.current != null) {
         millicastViewRef.current.webRTCPeer?.stopStats();
         await millicastViewRef.current.stop();
-        changeKeepAwake(false);
+        InCallManager.stop();
       }
     };
 
