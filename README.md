@@ -49,21 +49,25 @@ yarn install
 yarn start
 ```
 
-#### Run project in iOS
+#### Run project in iOS:
 
 ```
 export GITHUB_PERSONAL_ACCESS_TOKEN=<Your personal access token>
 
 cd ios && bundler install
 
-bundle exec pod install
+bundle exec pod install --repo-update
+```
 
+To run from terminal:
+
+```
 yarn ios
 ```
 
 Note: `YOUR_PERSONAL_ACCESS_TOKEN` gives you access to the private release artifacts in [this](https://github.com/millicast/libwebrtc-react-native/releases) repository
 
-(alternatively)
+To run from Xcode:
 
 1. Open Xcode.
 2. Select `Open a project from a file` and then select `../ios/RNSampleMillicast.xcworkspace`.
