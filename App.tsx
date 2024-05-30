@@ -1,7 +1,7 @@
 import {Director, View as MillicastView} from '@millicast/sdk';
 import {useEffect, useState, useRef} from 'react';
 import {RTCView} from 'react-native-webrtc';
-import {View, Text} from 'react-native';
+import {AppState, View, Text, Platform, AppStateStatus} from 'react-native';
 import InCallManager from 'react-native-incall-manager';
 
 const App = () => {
@@ -10,58 +10,90 @@ const App = () => {
   const millicastViewRef = useRef<MillicastView>();
   const streamName = `${process.env.STREAM_NAME}`;
   const streamAccountId = `${process.env.ACCOUNT_ID}`;
+  const appState = useRef<AppStateStatus>(AppState.currentState);
 
   useEffect(() => {
-    const subscribe = async () => {
-      const tokenGenerator = () =>
-        Director.getSubscriber({
-          streamName,
-          streamAccountId,
-        });
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      console.log('AppLogs: Current app state!', appState.current);
+      console.log('AppLogs: New app state!', nextAppState);
 
-      // Create a new instance
-      const millicastView = new MillicastView(streamName, tokenGenerator);
-      millicastViewRef.current = millicastView;
-
-      // Set track event handler to receive streams from Publisher.
-      millicastView.on('track', event => {
-        const videoUrl = event.streams[0].toURL();
-        if (videoUrl) {
-          setStreamURL(videoUrl);
-        }
-      });
-
-      try {
-        InCallManager.start({media: 'video'});
-        InCallManager.setKeepScreenOn(true);
-        await millicastView.connect();
-
-        millicastView.webRTCPeer?.initStats();
-
-        // Capture new stats from event every second
-        millicastView.webRTCPeer?.on('stats', statistics => {
-          const statisticsString = JSON.stringify(statistics, null, '  ');
-          console.log(statisticsString);
-          setStats(statisticsString);
-        });
-      } catch (e) {
-        console.log('Connection failed. Reason:', e);
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        console.log('AppLogs: App has come to the foreground!');
+        subscribe();
+      } else if (
+        appState.current === 'active' &&
+        nextAppState.match(/inactive|background/)
+      ) {
+        console.log('AppLogs: App has gone to background!');
+        unsubscribe();
       }
-    };
-    subscribe();
-    const unsubscribe = async () => {
-      if (millicastViewRef.current != null) {
-        millicastViewRef.current.webRTCPeer?.stopStats();
-        await millicastViewRef.current.stop();
-        InCallManager.stop();
-        InCallManager.setKeepScreenOn(false);
-      }
-    };
+      appState.current = nextAppState;
+    });
+
+    console.log('AppLogs: Component mount');
+    if (Platform.OS === 'android') {
+      // In Android there is no inactive to active transition on first launch / component mount.
+      // Hence a separate subscribe call is necessary
+      subscribe();
+    }
 
     return () => {
-      unsubscribe();
+      subscription.remove();
+      console.log('AppLogs: Component unmount');
     };
   }, []);
+
+  const subscribe = async () => {
+    const tokenGenerator = () =>
+      Director.getSubscriber({
+        streamName,
+        streamAccountId,
+      });
+
+    // Create a new instance
+    const millicastView = new MillicastView(streamName, tokenGenerator);
+    millicastViewRef.current = millicastView;
+
+    // Set track event handler to receive streams from Publisher.
+    millicastView.on('track', event => {
+      const videoUrl = event.streams[0].toURL();
+      if (videoUrl) {
+        setStreamURL(videoUrl);
+      }
+    });
+
+    try {
+      InCallManager.start({media: 'video'});
+      InCallManager.setKeepScreenOn(true);
+      await millicastView.connect();
+      console.log('AppLogs: Subscribe to stream');
+
+      millicastView.webRTCPeer?.initStats();
+
+      // Capture new stats from event every second
+      millicastView.webRTCPeer?.on('stats', statistics => {
+        const statisticsString = JSON.stringify(statistics, null, '  ');
+        console.log(statisticsString);
+        setStats(statisticsString);
+      });
+    } catch (e) {
+      console.log('Connection failed. Reason:', e);
+    }
+  };
+
+  const unsubscribe = async () => {
+    if (millicastViewRef.current != null) {
+      millicastViewRef.current.webRTCPeer?.stopStats();
+      await millicastViewRef.current.stop();
+      console.log('AppLogs: Unsubscribe the stream');
+
+      InCallManager.stop();
+      InCallManager.setKeepScreenOn(false);
+    }
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: 'grey'}}>
