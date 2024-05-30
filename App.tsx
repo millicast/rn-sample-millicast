@@ -33,6 +33,7 @@ const App = () => {
 
       try {
         InCallManager.start({media: 'video'});
+        InCallManager.setKeepScreenOn(true);
         await millicastView.connect();
 
         millicastView.webRTCPeer?.initStats();
@@ -53,6 +54,7 @@ const App = () => {
         millicastViewRef.current.webRTCPeer?.stopStats();
         await millicastViewRef.current.stop();
         InCallManager.stop();
+        InCallManager.setKeepScreenOn(false);
       }
     };
 
