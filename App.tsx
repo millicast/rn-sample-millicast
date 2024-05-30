@@ -35,7 +35,7 @@ const App = () => {
         InCallManager.start({media: 'video'});
         InCallManager.setKeepScreenOn(true);
         await millicastView.connect();
-
+        console.log('Subscribe to stream');
         millicastView.webRTCPeer?.initStats();
 
         // Capture new stats from event every second
@@ -53,6 +53,8 @@ const App = () => {
       if (millicastViewRef.current != null) {
         millicastViewRef.current.webRTCPeer?.stopStats();
         await millicastViewRef.current.stop();
+        console.log('Unsubscribe the stream');
+
         InCallManager.stop();
         InCallManager.setKeepScreenOn(false);
       }
