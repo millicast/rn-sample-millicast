@@ -3,13 +3,21 @@ import {useEffect, useState, useRef} from 'react';
 import {RTCView} from 'react-native-webrtc';
 import {AppState, View, Text, Platform, AppStateStatus} from 'react-native';
 import InCallManager from 'react-native-incall-manager';
+import RNFetchBlob from 'rn-fetch-blob';
+
+global.fetch = new RNFetchBlob.polyfill.Fetch({}).build();
+
+global.Blob = RNFetchBlob.polyfill.Blob;
+global.File = RNFetchBlob.polyfill.File;
+global.EventTarget = RNFetchBlob.polyfill.EventTarget;
 
 const App = () => {
   const [stats, setStats] = useState<string>();
   const [streamURL, setStreamURL] = useState<string>();
   const millicastViewRef = useRef<MillicastView>();
   const streamName = `${process.env.STREAM_NAME}`;
-  const streamAccountId = `${process.env.ACCOUNT_ID}`;
+  const accountId = `${process.env.ACCOUNT_ID}`;
+
   const appState = useRef<AppStateStatus>(AppState.currentState);
 
   useEffect(() => {
@@ -47,15 +55,24 @@ const App = () => {
   }, []);
 
   const subscribe = async () => {
-    const tokenGenerator = () =>
-      Director.getSubscriber({
-        streamName,
-        streamAccountId,
-      });
+    const tokenGenerator = () => {
+      console.log('tokenGenerator start');
+
+      const value = Director.getSubscriber(streamName, accountId);
+
+      console.log('getSubscriber returned', value);
+      return value;
+    };
+    console.log('sub 1');
 
     // Create a new instance
     const millicastView = new MillicastView(streamName, tokenGenerator);
+
+    console.log('sub 2');
+
     millicastViewRef.current = millicastView;
+
+    console.log('sub 3');
 
     // Set track event handler to receive streams from Publisher.
     millicastView.on('track', event => {
@@ -71,7 +88,10 @@ const App = () => {
       await millicastView.connect();
       console.log('AppLogs: Subscribe to stream');
 
-      millicastView.webRTCPeer?.initStats();
+      millicastView.webRTCPeer?.initStats({
+        autoInitStats: true,
+        statsIntervalMs: 5000,
+      });
 
       // Capture new stats from event every second
       millicastView.webRTCPeer?.on('stats', statistics => {

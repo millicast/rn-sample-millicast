@@ -10,12 +10,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@millicast/sdk": "^0.1.44",
+    "@millicast/sdk": "file:./temp/millicast-sdk/packages/millicast-sdk",
     "react": "18.2.0",
     "react-native": "npm:react-native-tvos@^0.74.1-0",
     "react-native-dotenv": "^3.4.11",
     "react-native-incall-manager": "^4.2.0",
     "react-native-webrtc": "github:millicast/react-native-webrtc#2434f4b",
+    "rn-fetch-blob": "^0.12.0",
     "text-encoding-polyfill": "^0.6.7"
   },
   "devDependencies": {
